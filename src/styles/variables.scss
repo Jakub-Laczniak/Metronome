@@ -1,0 +1,30 @@
+$color-bg: rgb(226, 180, 89);
+$color-dark: #282828;
+$color-light: #ffffff;
+$font-light: 400;
+$font-bold: 600;
+
+@mixin image_position {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@keyframes sign {
+    0% {
+        transform: rotate(0);
+    }
+    25%{
+        transform: rotate(45deg);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    75%{
+        transform: rotate(-45deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}

@@ -1,7 +1,42 @@
 @import './buttons.scss';
+@import './variables.scss';
 
-.App {
-    h1 {
-        color: gray;
+body, html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: $color-bg;
+}
+
+.main_container {
+    width: 90vw;
+    margin: auto;
+    .metronome_body {
+        background: url('../components/img/body.png');
+        @include image_position();
+        height: 680px;
+        margin-top: 60px;
+        .metronome_sign {
+            background: url('../components/img/sign.png');
+            @include image_position();
+            top: 9%;
+            height: 57%;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: translate(-50%);
+            width: 2%;
+            animation: sign infinite linear;
+            .metronome_weight {
+                background: url('../components/img/weight.png');
+                @include image_position();
+                height: 11.3%;
+                width: 1000%;
+                left: 50%;
+                top: 50px;
+                transform-origin: center top;
+                transform: translate(-50%);
+            }
+        }
     }
 }
