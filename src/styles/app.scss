@@ -1,4 +1,4 @@
-@import './buttons.scss';
+@import './menu.scss';
 @import './variables.scss';
 
 body, html {
@@ -7,18 +7,20 @@ body, html {
 
 body {
     background-color: $color-bg;
-}
+    color: $color-dark;
+};
 
 .main_container {
     width: 90vw;
+    max-width: 100rem;
     margin: auto;
     .metronome_body {
-        background: url('../components/img/body.png');
+        background: url('../img/body.png');
         @include image_position();
-        height: 680px;
+        height: 30rem;
         margin-top: 60px;
-        .metronome_sign {
-            background: url('../components/img/sign.png');
+        .metronome_pend {
+            background: url('../img/pend.png');
             @include image_position();
             top: 9%;
             height: 57%;
@@ -26,9 +28,9 @@ body {
             transform-origin: bottom center;
             transform: translate(-50%);
             width: 2%;
-            animation: sign infinite linear;
+            animation: infinite linear;
             .metronome_weight {
-                background: url('../components/img/weight.png');
+                background: url('../img/weight.png');
                 @include image_position();
                 height: 11.3%;
                 width: 1000%;
@@ -37,6 +39,15 @@ body {
                 transform-origin: center top;
                 transform: translate(-50%);
             }
+        }
+        .metronome_btn {
+            @include image_position();
+            width: 12%;
+            transform: translate(-50%);
+            left: 50%;
+            top: 20%;
+            height: 12%;
+            cursor: pointer;
         }
     }
 }

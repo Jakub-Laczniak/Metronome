@@ -1,0 +1,66 @@
+@import './variables.scss';
+
+.menu_container {
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    .menu_btns{
+        width: 30%;
+        height: 8rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-weight: $font-bold;
+        .btn_small {
+            font-size: 1.6rem;
+            position: relative;
+            cursor: pointer;
+            &::after{
+                content: '';
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                transform: translate(-72%, -15%);
+                border: 2px solid $color-dark;
+                border-radius: 50%;
+            }
+        }
+        .btn_big {
+            font-size: 1.8rem;
+            position: relative;
+            cursor: pointer;
+            &::after{
+                content: '';
+                position: absolute;
+                width: 47px;
+                height: 47px;
+                transform: translate(-76%, -16%);
+                border: 4px solid $color-dark;
+                border-radius: 50%;
+            }
+        }
+    };
+    .menu_counter {
+        width: 30%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        height: 8rem;
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+        };
+        .line {
+            border-bottom: 2px solid $color-dark;
+            width: 70%;
+            margin: auto;
+        }
+        h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+    }
+}
