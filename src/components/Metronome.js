@@ -1,24 +1,43 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import start from '../img/start.png';
 import stop from '../img/stop.png';
 import '../styles/variables.scss';
 import Menu from './Menu';
+import {Howl} from 'howler';
+import mainAudio from '../sound/main.mp3'
+
 
 function Metronome() {
     const [isRunning, setIsRunning] = useState(false);
-    const [interval, setInterval] = useState(120);
+    const [BPM, setBPM] = useState(60);
 
-    let intervalHandler = interval*0.0167
+    const mainSound = new Howl({
+        src: mainAudio
+      });
+
+    let time = 1/(BPM/60)*2;
+    let intervalTime = time/2*1000;
+
     let animationPending = {
-        animationDuration: intervalHandler*2 + 's', 
+        animationDuration: time+'s', 
         animationName: 'pend_animation',
     };
 
     useEffect(() => {
-        console.log(interval);
-        console.log(animationPending);
-        animationPending.animationDuration = interval*60 + 's';
-    }, [interval])
+        let soundInterval;
+        if (isRunning) {
+            soundInterval = setInterval(()=>{
+                mainSound.play();
+            },intervalTime);
+        }
+        return () => {
+            clearInterval(soundInterval)
+        }
+    }, [isRunning]);
+
+    useEffect(() => {
+        animationPending.animationDuration = time + 's';
+    }, [BPM]);
 
     const handleClick = () => {
         setIsRunning((prev)=>!prev);
@@ -32,7 +51,13 @@ function Metronome() {
 
     const handleInterval = (e) => {
         setIsRunning(false);
-        setInterval((prev) => prev + e);
+        setBPM((prev) => prev + e);
+    };
+
+    const handleChange = (e) => {
+        setIsRunning(false);
+        let num = Number(e.target.value)
+        setBPM(num)
     };
 
     return (
@@ -43,9 +68,9 @@ function Metronome() {
                 </div>
                 <div className='metronome_btn' style={{backgroundImage: `url(${isRunning?stop:start})`}} onClick={handleClick}/>
             </div>
-            <Menu counter={interval} click={handleInterval}/>
+            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange}/>
         </React.Fragment>
     )
 }
 
-export default Metronome
+export default Metronome;

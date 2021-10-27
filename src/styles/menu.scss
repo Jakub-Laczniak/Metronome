@@ -1,14 +1,16 @@
 @import './variables.scss';
 
 .menu_container {
-    width: 80%;
+    width: 90%;
+    max-width: 450px;
     margin: auto;
     margin-top: 1rem;
     text-align: center;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     .menu_btns{
-        width: 30%;
+        min-width: 8rem;
+        width: 25%;
         height: 8rem;
         display: flex;
         justify-content: space-around;
@@ -26,8 +28,8 @@
                 transform: translate(-72%, -15%);
                 border: 2px solid $color-dark;
                 border-radius: 50%;
-            }
-        }
+            };
+        };
         .btn_big {
             font-size: 1.8rem;
             position: relative;
@@ -40,27 +42,43 @@
                 transform: translate(-76%, -16%);
                 border: 4px solid $color-dark;
                 border-radius: 50%;
-            }
-        }
+            };
+        };
     };
     .menu_counter {
-        width: 30%;
+        width: 20%;
         display: flex;
         justify-content: space-around;
         flex-direction: column;
         height: 8rem;
-        h1 {
-            font-size: 3.5rem;
-            margin: 0;
-        };
+            .counter {
+                font-size: 3.5rem;
+                margin: 0;
+                width: 5.7rem;
+                text-align: center;
+                background-color: $color-bg;
+                border: none;
+                outline: none;
+                display: inline;
+            };
         .line {
             border-bottom: 2px solid $color-dark;
-            width: 70%;
+            width: 90%;
             margin: auto;
         }
         h2 {
             margin: 0;
             font-size: 2rem;
         }
-    }
-}
+    };
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    };
+    
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    };
+};

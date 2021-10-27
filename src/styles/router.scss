@@ -1,0 +1,42 @@
+@import './variables.scss';
+
+.menu_router {
+    width: 90%;
+    max-width: 450px;
+    margin: auto;
+    margin-top: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    .router_btn {
+        border: 2px solid $color-dark;
+        padding: .5rem .7rem;
+        border-radius: 12px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        .router_icon_set {
+            background: url('../img/gear.png');
+            @include router_btns;
+        };
+        .router_icon_list {
+            background: url('../img/list.png');
+            @include router_btns;
+        };
+    };
+    .set_active {
+        color: $color-bg;
+        background-color: $color-dark;
+        .router_icon_set {
+            background: url('../img/gear-color.png');
+            @include router_btns;
+        };
+    };
+    .list_active {
+        color: $color-bg;
+        background-color: $color-dark;
+        .router_icon_list {
+            background: url('../img/list-color.png');
+            @include router_btns;
+        };
+    };
+};

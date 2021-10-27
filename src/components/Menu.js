@@ -1,28 +1,41 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import RouterBtn from './RouterBtn';
+import MenuBtns from './MenuBtns';
 
-function Menu({isSpeeding, counter, click}) {
+function Menu({counter, handleClick, handleChange}) {
 
-    const handleClick = (e) => {
-        click(e);
+    const [speeding, setSpeeding] = useState(false);
+    const [metrum, setMetrum] = useState(false);
+    const [songs, setSongs] = useState(false);
+
+    const handleRouterClick = (e) => {
+        let name = e.currentTarget.innerText;
+        setSpeeding(false);
+        setMetrum(false);
+        setSongs(false);
+        switch (name) {
+            case 'speeding' :
+            setSpeeding(true);
+                break;
+            case 'metrum' :
+            setMetrum(true);
+                break;
+            case 'songs' :
+            setSongs(true);
+                break;
+        };
     };
 
     return (
-        <div className='menu_container'>
-            <div className='menu_btns'>
-                <p className='btn_big' onClick={()=>handleClick(-5)}>-5</p>
-                <p className='btn_small' onClick={()=>handleClick(-1)}>-1</p>
+        <React.Fragment>
+            <MenuBtns counter={counter} click={handleClick} handleChange={handleChange}/>
+            <div className='menu_router'>
+                <RouterBtn classTarget='router_icon_set' text='speeding' handleClick={(e)=>handleRouterClick(e)} classActive={speeding?'set_active':null}/>
+                <RouterBtn classTarget='router_icon_set' text='metrum' handleClick={(e)=>handleRouterClick(e)} classActive={metrum?'set_active':null}/>
+                <RouterBtn classTarget='router_icon_list' text='songs' handleClick={(e)=>handleRouterClick(e)} classActive={songs?'list_active':null}/>
             </div>
-            <div className='menu_counter'>
-                <h1>{counter}</h1>
-                <span className='line'/>
-                <h2>bpm</h2>
-            </div>
-            <div className='menu_btns'>
-                <p className='btn_small' onClick={()=>handleClick(1)}>+1</p>
-                <p className='btn_big' onClick={()=>handleClick(5)}>+5</p>
-            </div>
-        </div>
+        </React.Fragment>
     )
-}
+};
 
-export default Menu
+export default Menu;
