@@ -4,19 +4,23 @@ import stop from '../img/stop.png';
 import '../styles/variables.scss';
 import Menu from './Menu';
 import {Howl} from 'howler';
-import mainAudio from '../sound/main.mp3'
-
+import mainAudio from '../sound/main.mp3';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 
 function Metronome() {
     const [isRunning, setIsRunning] = useState(false);
     const [BPM, setBPM] = useState(60);
+    const [quant, setQuant] = useState(0);
+    const [speedTime, setSpeedTime] = useState(0);
+    const [isSpeeding, setIsSpeeding] = useState(false);
 
     const mainSound = new Howl({
         src: mainAudio
-      });
-
+    });
+    
     let time = 1/(BPM/60)*2;
     let intervalTime = time/2*1000;
+    let speedTimeInterval = speedTime*intervalTime*2;
 
     let animationPending = {
         animationDuration: time+'s', 
@@ -25,22 +29,37 @@ function Metronome() {
 
     useEffect(() => {
         let soundInterval;
+        mainSound.play();
         if (isRunning) {
             soundInterval = setInterval(()=>{
                 mainSound.play();
             },intervalTime);
         }
         return () => {
-            clearInterval(soundInterval)
+            clearInterval(soundInterval);
         }
     }, [isRunning]);
 
     useEffect(() => {
-        animationPending.animationDuration = time + 's';
-    }, [BPM]);
+        let speedInterval;
+        if(isSpeeding && quant > 0){
+            speedInterval = setInterval(() => {
+                setBPM((prev)=>prev+quant)
+            }, speedTimeInterval);
+        }
+        return () => {
+            clearInterval(speedInterval);
+        }
+    }, [isSpeeding])
+
+    useEffect(() => {
+        console.log(speedTimeInterval);
+        console.log(animationPending.animationDuration);
+    });
 
     const handleClick = () => {
         setIsRunning((prev)=>!prev);
+        setIsSpeeding((prev)=>!prev);
     };
 
     document.body.onkeyup = function (e) {
@@ -60,7 +79,13 @@ function Metronome() {
         setBPM(num)
     };
 
+    const handleSpeed = (quant, time) => {
+        setQuant(quant);
+        setSpeedTime(time);
+    };
+
     return (
+        <Router>
         <React.Fragment>
             <div className='metronome_body'>
                 <div className='metronome_pend' style={isRunning?animationPending:null}>
@@ -68,8 +93,9 @@ function Metronome() {
                 </div>
                 <div className='metronome_btn' style={{backgroundImage: `url(${isRunning?stop:start})`}} onClick={handleClick}/>
             </div>
-            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange}/>
+            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange} handleSpeed={handleSpeed}/>
         </React.Fragment>
+        </Router>
     )
 }
 

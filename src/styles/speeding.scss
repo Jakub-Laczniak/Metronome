@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.menu_container {
+.quant_container {
     width: 90%;
     max-width: 450px;
     margin: auto;
@@ -8,15 +8,16 @@
     text-align: center;
     display: flex;
     justify-content: space-between;
-    .menu_btns{
-        min-width: 8rem;
-        width: 25%;
+    align-items: center;
+    .quant_btns{
+        width: 10%;
         height: 8rem;
         display: flex;
         justify-content: space-around;
+        flex-direction: column;
         align-items: center;
         font-weight: $font-bold;
-        .btn_small {
+        .quant_btn {
             font-size: 1.6rem;
             position: relative;
             cursor: pointer;
@@ -30,20 +31,6 @@
                 border-radius: 50%;
             };
         };
-        .btn_big {
-            font-size: 1.8rem;
-            position: relative;
-            cursor: pointer;
-            &::after{
-                content: '';
-                position: absolute;
-                width: 47px;
-                height: 47px;
-                transform: translate(-76%, -16%);
-                border: 4px solid $color-dark;
-                border-radius: 50%;
-            };
-        };
     };
     .menu_counter {
         width: 20%;
@@ -51,7 +38,7 @@
         justify-content: space-around;
         flex-direction: column;
         height: 8rem;
-        .counter {
+        .quant_counter {
             font-size: 3.5rem;
             margin: 0;
             width: 5.7rem;
@@ -60,25 +47,26 @@
             border: none;
             outline: none;
             display: inline;
+            .quant_span {
+                font-size: 1rem;
             };
+        };
         .line {
             border-bottom: 2px solid $color-dark;
             width: 90%;
             margin: auto;
-        }
-        h2 {
-            margin: 0;
-            font-size: 2rem;
-        }
+        };
     };
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+    .quant_icon_back {
+        background: url('../img/back.png');
+        width: 50px;
+        height: 50px;
+        @include image_position();
     };
-    
-    /* Firefox */
-    input[type=number] {
-        -moz-appearance: textfield;
+    .quant_icon_confirm {
+        background: url('../img/confirm.png');
+        width: 50px;
+        height: 50px;
+        @include image_position();
     };
 };
