@@ -18,9 +18,10 @@ function Metronome() {
         src: mainAudio
     });
     
-    let time = 1/(BPM/60)*2;
-    let intervalTime = time/2*1000;
-    let speedTimeInterval = speedTime*intervalTime*2;
+    let time = 1/(BPM/60)*2; // oznacza dwa interwały, czyli 100% animacji. Oznacza czas trwania animacji
+    let intervalTime = time/2*1000; // oznacza jeden interwał, czyli 50% animacji. obsługuje dźwięk
+    let howMany = Math.round(speedTime/time); /// ile razy 100% animacji mieści się w czasie przeznaczonym na podwyższenie tempa
+    let speedTimeInterval = howMany * time * 1000;
 
     let animationPending = {
         animationDuration: time+'s', 
@@ -44,17 +45,19 @@ function Metronome() {
         let speedInterval;
         if(isSpeeding && quant > 0){
             speedInterval = setInterval(() => {
+                setIsRunning(false);
+                console.log('test');
                 setBPM((prev)=>prev+quant)
-            }, speedTimeInterval);
+                setIsRunning(true);
+            }, speedTimeInterval-100);
         }
         return () => {
             clearInterval(speedInterval);
         }
-    }, [isSpeeding])
+    }, [isSpeeding]);
 
     useEffect(() => {
-        console.log(speedTimeInterval);
-        console.log(animationPending.animationDuration);
+        console.log(time, speedTime, howMany, speedTimeInterval);
     });
 
     const handleClick = () => {
