@@ -13,23 +13,36 @@ function Metronome() {
     const [quant, setQuant] = useState(0);
     const [speedTime, setSpeedTime] = useState(0);
     const [isSpeeding, setIsSpeeding] = useState(false);
+    const [animationPending, setAnimationPending] = useState({});
+    const [time, setTime] = useState((1/(BPM/60)*2).toFixed(2));
+    const [intervalTime, setIntervalTime] = useState(time/2*1000);
+    const [speedTimeInterval, setSpeedTimeInterval] = useState(Math.floor(speedTime/time)*time*1000);
 
     const mainSound = new Howl({
-        src: mainAudio
+        src: mainAudio,
     });
-    
-    let time = 1/(BPM/60)*2;
-    let intervalTime = time/2*1000;
-    let speedTimeInterval = speedTime*intervalTime*2;
 
-    let animationPending = {
-        animationDuration: time+'s', 
-        animationName: 'pend_animation',
-    };
+    useEffect(()=>{
+        setTime((1/(BPM/60)*2).toFixed(2));
+        console.log('time: ',time, 'animation pending: ', animationPending, 'interval time: ', intervalTime, 'speed time: ', speedTime,'speed time interval: ', speedTimeInterval);
+    },[BPM]);
+
+    useEffect(()=>{
+        setAnimationPending({
+            animationDuration: time+'s', 
+            animationName: 'pend_animation',
+        });
+        setIntervalTime(time/2*1000);
+        setSpeedTimeInterval((speedTime/time).toFixed(0)*time*1000);
+    },[time]);
 
     useEffect(() => {
         let soundInterval;
         mainSound.play();
+        setAnimationPending({
+            animationDuration: time+'s', 
+            animationName: 'pend_animation',
+        });
         if (isRunning) {
             soundInterval = setInterval(()=>{
                 mainSound.play();
@@ -38,31 +51,26 @@ function Metronome() {
         return () => {
             clearInterval(soundInterval);
         }
-    }, [isRunning]);
+    }, [isRunning, time]);
 
     useEffect(() => {
         let speedInterval;
         if(isSpeeding && quant > 0){
             speedInterval = setInterval(() => {
-                setBPM((prev)=>prev+quant)
+                setBPM((prev)=>prev+quant);
             }, speedTimeInterval);
         }
         return () => {
             clearInterval(speedInterval);
         }
-    }, [isSpeeding])
-
-    useEffect(() => {
-        console.log(speedTimeInterval);
-        console.log(animationPending.animationDuration);
-    });
+    }, [isSpeeding]);
 
     const handleClick = () => {
         setIsRunning((prev)=>!prev);
         setIsSpeeding((prev)=>!prev);
     };
 
-    document.body.onkeyup = function (e) {
+    document.body.onkeypress = function (e) {
         if(e.keyCode === 32) {
             handleClick();
         };
@@ -75,8 +83,8 @@ function Metronome() {
 
     const handleChange = (e) => {
         setIsRunning(false);
-        let num = Number(e.target.value)
-        setBPM(num)
+        let num = Number(e.target.value);
+        setBPM(num);
     };
 
     const handleSpeed = (quant, time) => {
@@ -86,15 +94,13 @@ function Metronome() {
 
     return (
         <Router>
-        <React.Fragment>
-            <div className='metronome_body'>
+            <div className='metronome_body' onKeyDown={(e)=>console.log(e)}>
                 <div className='metronome_pend' style={isRunning?animationPending:null}>
                     <div className='metronome_weight'/>
                 </div>
                 <div className='metronome_btn' style={{backgroundImage: `url(${isRunning?stop:start})`}} onClick={handleClick}/>
             </div>
-            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange} handleSpeed={handleSpeed}/>
-        </React.Fragment>
+            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange} handleSpeed={handleSpeed} quant={quant} time={speedTime}/>
         </Router>
     )
 }

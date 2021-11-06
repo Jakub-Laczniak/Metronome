@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-function Speeding({handleSpeed}) {
+function Speeding({handleSpeed, localTime, localQuant}) {
 
-    const [quant, setQuant] = useState(0);
-    const [time, setTime] = useState(5);
+    const [quant, setQuant] = useState(localQuant);
+    const [time, setTime] = useState(localTime);
 
     const handleQuant = (e) => {
         setQuant((prev)=>prev+e)
