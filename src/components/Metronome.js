@@ -21,6 +21,11 @@ function Metronome() {
     const mainSound = new Howl({
         src: mainAudio,
     });
+    
+    let time = 1/(BPM/60)*2; // oznacza dwa interwały, czyli 100% animacji. Oznacza czas trwania animacji
+    let intervalTime = time/2*1000; // oznacza jeden interwał, czyli 50% animacji. obsługuje dźwięk
+    let howMany = Math.round(speedTime/time); /// ile razy 100% animacji mieści się w czasie przeznaczonym na podwyższenie tempa
+    let speedTimeInterval = howMany * time * 1000;
 
     useEffect(()=>{
         setTime((1/(BPM/60)*2).toFixed(2));
