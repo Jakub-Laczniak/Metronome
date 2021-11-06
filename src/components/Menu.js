@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import RouterBtn from './RouterBtn';
 import MenuBtns from './MenuBtns';
-import Speeding from './Speeding';
 import Songs from './Songs';
 import Metrum from './Metrum';
 import {Switch, Route, Link, useLocation } from 'react-router-dom';
 
-function Menu({counter, handleClick, handleChange, handleSpeed, time, quant}) {
+function Menu({counter, handleClick, handleChange}) {
 
-    const [speeding, setSpeeding] = useState(false);
     const [metrum, setMetrum] = useState(false);
     const [songs, setSongs] = useState(false);
     const linkStyle = {color:'black', textDecoration: 'none'};
@@ -16,7 +14,6 @@ function Menu({counter, handleClick, handleChange, handleSpeed, time, quant}) {
     let location = useLocation();
     useEffect(() => {
         if (location.pathname === '/') {
-            setSpeeding(false);
             setMetrum(false);
             setSongs(false);
         };
@@ -26,11 +23,7 @@ function Menu({counter, handleClick, handleChange, handleSpeed, time, quant}) {
         let name = e.currentTarget.innerText;
         setMetrum(false);
         setSongs(false);
-        setSpeeding(false);
         switch (name) {
-            case 'speeding' :
-            setSpeeding(true);
-                break;
             case 'metrum' :
             setMetrum(true);
                 break;
@@ -44,14 +37,10 @@ function Menu({counter, handleClick, handleChange, handleSpeed, time, quant}) {
         <React.Fragment>
                 <Switch>
                     <Route exact path='/' render={()=><MenuBtns counter={counter} click={handleClick} handleChange={handleChange}/>}/>
-                    <Route exact path='/speeding' render={()=><Speeding handleSpeed={handleSpeed} localQuant={quant} localTime={time}/>}/>
                     <Route exact path='/metrum' render={()=><Metrum/>}/>
                     <Route exact path='/songs' render={()=><Songs/>}/>
                 </Switch>
                 <nav className='menu_router'>
-                    <Link to='/speeding'style={linkStyle}>
-                        <RouterBtn classTarget='router_icon_set' text='speeding' handleClick={(e)=>handleRouterClick(e)} classActive={speeding?'set_active':null}/>
-                    </Link>
                     <Link to='/metrum'style={linkStyle}>
                         <RouterBtn classTarget='router_icon_set' text='metrum' handleClick={(e)=>handleRouterClick(e)} classActive={metrum?'set_active':null}/>
                     </Link>
