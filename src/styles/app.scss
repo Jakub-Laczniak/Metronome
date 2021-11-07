@@ -1,7 +1,6 @@
 @import './menu.scss';
 @import './variables.scss';
 @import './router.scss';
-@import './speeding.scss';
 
 body, html {
     font-family: 'Montserrat', sans-serif;
@@ -27,7 +26,7 @@ body {
             top: 9%;
             height: 57%;
             left: 50%;
-            transform-origin: bottom center;
+            transform-origin: 0% 100%;
             transform: translate(-50%);
             width: 2%;
             animation: infinite linear;
@@ -37,7 +36,6 @@ body {
                 height: 11.3%;
                 width: 1000%;
                 left: 50%;
-                top: 50px;
                 transform-origin: center top;
                 transform: translate(-50%);
             }
