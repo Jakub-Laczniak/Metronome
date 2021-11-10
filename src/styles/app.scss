@@ -19,7 +19,7 @@ body {
         background: url('../img/body.png');
         @include image_position();
         height: 30rem;
-        margin-top: 60px;
+        margin-top: 80px;
         .metronome_pend {
             background: url('../img/pend.png');
             @include image_position();
@@ -50,4 +50,17 @@ body {
             cursor: pointer;
         }
     }
+    @media screen and (min-width:$first-break) {
+        .metronome_body {
+            height: 40rem;
+            margin-top: 120px;
+        };
+    };
+    @media screen and (min-width:$second-break) {
+        .metronome_body {
+            height: 50rem;
+            min-width: 500px;
+            margin-top: 160px;
+        };
+    };
 }

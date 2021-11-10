@@ -17,6 +17,7 @@ function Menu({counter, handleClick, handleChange, handleMetrum, metrumProp}) {
         if (location.pathname === '/') {
             setMetrum(false);
             setSongs(false);
+            setMetronome(true)
         };
     }, [location.pathname]);
 

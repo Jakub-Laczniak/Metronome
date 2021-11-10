@@ -115,4 +115,83 @@
             }
         };
     };
+    .songs_container {
+        height: 39rem;
+        transform: translateY(-31rem);
+        width: 200%;
+        background-color: $color-bg;
+        overflow-y: scroll;
+        position: relative;
+        .single_song_container {
+            margin: auto;
+            background-color: white;
+            width: 80%;
+            border-radius: 35px;
+            padding-top: .7rem;
+            padding-bottom: .7rem;
+            cursor: pointer;
+            margin-bottom: .5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h4 {
+                font-size: 1.2rem;
+                margin: 0;
+                display: inline-block;
+                padding-bottom: .4rem
+            };
+            p  {
+                margin: 0;
+                width: 3.5rem;
+                padding-right: 1rem;
+                padding-left: 2rem;
+                display: inline-block;
+                text-align: left;
+            };
+            a {
+                color: black
+            };
+        };
+        // .clicked {
+        //     align-items: flex-start;
+        // };
+        // form {
+        //     position: absolute;
+        //     transform: translate(-50%);
+        //     text-align: left;
+        //     left: 50%;
+        //     width: 90%;
+        //     bottom: 0;
+        //     border: 1px solid red;
+        // }
+    };
+    @media screen and (min-width:$first-break) {
+        .songs_container {
+            height: 48rem;
+            transform: translateY(-41rem);
+        };
+    };
+    @media screen and (min-width:$second-break) {
+        .songs_container {
+            height: 58rem;
+            min-width: 500px;
+            transform: translate(-1.6rem, -51rem);
+        };
+    };
 };
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    }
+    
+    ::-webkit-scrollbar-track {
+    border: 0;
+    border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+    background: rgb(200, 150, 85);  
+    border-radius: 10px;
+    }
+    

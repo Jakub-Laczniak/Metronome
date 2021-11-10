@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import start from '../img/start.png';
 import stop from '../img/stop.png';
 import '../styles/variables.scss';
-import Menu from './Menu';
 import { Howl } from 'howler';
 import mainAudio from '../sound/main.mp3';
 import sideAudio from '../sound/side.mp3'
-import { BrowserRouter as Router } from 'react-router-dom';
 import PendWeight from './PendWeight';
+import Menu from './Menu';
 
 function Metronome() {
     const [isRunning, setIsRunning] = useState(false);
@@ -133,7 +132,7 @@ function Metronome() {
     };
 
     return (
-        <Router>
+        <>
             <div className='metronome_body'>
                 <div className='metronome_pend' style={isRunning?animationPending:null}>
                     <PendWeight BPM = {BPM}/>
@@ -141,7 +140,7 @@ function Metronome() {
                 <div className='metronome_btn' style={{backgroundImage: `url(${isRunning?stop:start})`}} onClick={handleClick}/>
             </div>
             <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange} metrumProp={metrum} handleMetrum={handleMetrum}/>
-        </Router>
+        </>
     )
 }
 

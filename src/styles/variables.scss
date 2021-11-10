@@ -4,6 +4,8 @@ $color-dark: #282828;
 $color-light: #ffffff;
 $font-light: 400;
 $font-bold: 600;
+$first-break: 700px;
+$second-break: 1100px;
 
 @mixin image_position {
     position: relative;
