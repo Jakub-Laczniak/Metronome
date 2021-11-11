@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MenuBtns({click, counter, handleChange}) {
+function MenuBtns({click, counter, handleChange, warning}) {
 
     const handleClick = (e) => {
         click(e);
@@ -14,6 +14,7 @@ function MenuBtns({click, counter, handleChange}) {
             </div>
             <div className='menu_counter'>
                 <input type='number' className='counter' max='220' min='30' value={counter} onChange={handleChange}/>
+                {warning?<span className='warning'>min. 30 max. 208</span>:null}
                 <span className='line'/>
                 <h2>bpm</h2>
             </div>

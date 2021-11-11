@@ -5,7 +5,7 @@ import Songs from './Songs';
 import Metrum from './Metrum';
 import {Switch, Route, Link, useLocation } from 'react-router-dom';
 
-function Menu({counter, handleClick, handleChange, handleMetrum, metrumProp}) {
+function Menu({counter, handleClick, handleChange, handleMetrum, metrumProp, warning}) {
 
     const [metrum, setMetrum] = useState(false);
     const [songs, setSongs] = useState(false);
@@ -42,7 +42,7 @@ function Menu({counter, handleClick, handleChange, handleMetrum, metrumProp}) {
     return (
         <React.Fragment>
                 <Switch>
-                    <Route exact path='/' render={()=><MenuBtns counter={counter} click={handleClick} handleChange={handleChange}/>}/>
+                    <Route exact path='/' render={()=><MenuBtns counter={counter} click={handleClick} handleChange={handleChange} warning={warning}/>}/>
                     <Route exact path='/metrum' render={()=><Metrum metrum={metrumProp} handleMetrum={handleMetrum}/>}/>
                     <Route exact path='/songs' render={()=><Songs/>}/>
                 </Switch>

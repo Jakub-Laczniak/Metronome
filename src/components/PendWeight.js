@@ -7,10 +7,6 @@ function PendWeight ({ BPM }) {
     window.addEventListener('resize', (()=>{
         setWindowWidth(window.innerWidth);
     }))
-
-    useEffect(() => {
-        console.log(windowWidth);
-    }, [windowWidth]);
     
     useEffect(()=>{
         if (windowWidth<=700) {

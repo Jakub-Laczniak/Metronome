@@ -17,6 +17,7 @@ function Metronome() {
     const [metrum, setMetrum] = useState('A');
     const [metrumTime, setMetrumTime] = useState(0);
     const [metrumPause, setMetrumPause] = useState(0);
+    const [warning, setWarning] = useState(false);
 
     const mainSound = new Howl({
         src: mainAudio,
@@ -27,13 +28,28 @@ function Metronome() {
     });
     
     useEffect(()=>{
-        if (BPM < 30) {
-            setBPM(30);
-        };
-        if (BPM > 208) {
-            setBPM(208);
-        };
         setTime(1/(BPM/60)*2);
+        let timer = setTimeout(()=>{
+            if (BPM < 30) {
+                setBPM(30);
+                setWarning(false);
+            };
+            if (BPM > 208) {
+                setBPM(208);
+                setWarning(false);
+            };
+        },1500);
+        if (BPM >= 30 && BPM <= 208) {
+            clearTimeout(timer);
+            setWarning(false);
+        };
+        if (BPM < 30 || BPM > 208) {
+            setWarning(true);
+        };
+        
+        return () => {
+            clearTimeout(timer);
+        };
     },[BPM]);
 
     useEffect(()=>{
@@ -57,7 +73,7 @@ function Metronome() {
                 setMetrumTime(intervalTime/2);
                 break;
         }
-    }, [intervalTime, metrum])
+    }, [intervalTime, metrum]);
 
     useEffect(() => {
         let soundInterval;
@@ -139,7 +155,7 @@ function Metronome() {
                 </div>
                 <div className='metronome_btn' style={{backgroundImage: `url(${isRunning?stop:start})`}} onClick={handleClick}/>
             </div>
-            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange} metrumProp={metrum} handleMetrum={handleMetrum}/>
+            <Menu counter={BPM} handleClick={handleInterval} handleChange={handleChange} metrumProp={metrum} handleMetrum={handleMetrum} warning={warning}/>
         </>
     )
 }
