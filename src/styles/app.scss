@@ -2,6 +2,8 @@
 @import './variables.scss';
 @import './router.scss';
 
+@media (-webkit-device-pixel-ratio: 1) {
+
 body, html {
     font-family: 'Montserrat', sans-serif;
 }
@@ -63,4 +65,71 @@ body {
             margin-top: 160px;
         };
     };
-}
+};
+};
+
+@media (-webkit-device-pixel-ratio: 2) {
+    
+    body, html {
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    body {
+        background-color: $color-bg;
+        color: $color-dark;
+    };
+    
+    .main_container {
+        width: 90vw;
+        max-width: 70rem;
+        margin: auto;
+        .metronome_body {
+            background: url('../img/body.png');
+            @include image_position();
+            height: 22rem;
+            margin-top: 40px;
+            .metronome_pend {
+                background: url('../img/pend.png');
+                @include image_position();
+                top: 9%;
+                height: 57%;
+                left: 50%;
+                transform-origin: 0% 100%;
+                transform: translate(-50%);
+                width: 2%;
+                animation: infinite linear;
+                .metronome_weight {
+                    background: url('../img/weight.png');
+                    @include image_position();
+                    height: 11.3%;
+                    width: 1000%;
+                    left: 50%;
+                    transform-origin: center top;
+                    transform: translate(-50%);
+                }
+            }
+            .metronome_btn {
+                @include image_position();
+                width: 12%;
+                transform: translate(-50%);
+                left: 50%;
+                top: 20%;
+                height: 12%;
+                cursor: pointer;
+            }
+        }
+        @media screen and (min-width:$first-break) {
+            .metronome_body {
+                height: 24rem;
+                margin-top: 40px;
+            };
+        };
+        @media screen and (min-width:$second-break) {
+            .metronome_body {
+                height: 25rem;
+                min-width: 250px;
+                margin-top: 50px;
+            };
+        };
+    };
+};
