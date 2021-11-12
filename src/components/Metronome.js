@@ -116,12 +116,6 @@ function Metronome() {
         setMetrumPause(0);
     };
 
-    document.body.onkeypress = function (e) {
-        if(e.keyCode === 32) {
-            handleClick();
-        };
-    };
-
     const handleInterval = (e) => {
         setIsRunning(false);
         setBPM((prev) => prev + e);

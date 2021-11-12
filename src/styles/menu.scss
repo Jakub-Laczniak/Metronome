@@ -149,23 +149,43 @@
             border-radius: 35px;
             padding-top: .7rem;
             padding-bottom: .7rem;
-            cursor: pointer;
             margin-bottom: .5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            
+            .delete {
+                position: absolute;
+                color: rgb(56, 56, 56);
+                cursor: pointer;
+                font-size: .8rem;
+                right: 5rem;
+                padding: .3rem .5rem;
+                border: 1px solid rgb(56, 56, 56);
+                font-weight: bold;
+                border-radius: 50%;
+                transition: .3s;
+                transform: translateY(2px);
+                &:hover {
+                    background-color: rgb(184, 50, 50);
+                    border: none;
+                    color: white;
+                };
+            };
             h4 {
-                font-size: 1.2rem;
+                font-size: 1rem;
                 margin: 0;
+                margin-bottom: 6px;
                 display: inline-block;
-                padding-bottom: .4rem
+                cursor: pointer;
+                padding-left: 1rem;
+            };
+            .main_title {
+                padding: .3rem 4rem;
             };
             p  {
                 margin: 0;
-                width: 3.5rem;
-                padding-right: 1rem;
-                padding-left: 2rem;
+                width: 3rem;
+                padding-left: 1.4rem;
                 display: inline-block;
                 text-align: left;
             };
@@ -175,6 +195,7 @@
         };
         .clicked {
             align-items: flex-start;
+            cursor: default;
         };
     }
     .new_song_form {
@@ -185,10 +206,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // border: 1px solid red;
         position: relative;
         input {
-            // border: 1px solid red;
             border-bottom: 2px solid rgb(200, 150, 85);
             border-top: none;
             border-left: none;
@@ -393,7 +412,7 @@
             max-width: 225px;
             background-color: $color-bg;
             overflow-y: scroll;
-            border-bottom: 2px solid rgb(200, 150, 85);
+            border-bottom: 2px solid rgb(175, 168, 158);
             .single_song_container {
                 margin: auto;
                 background-color: white;
@@ -406,19 +425,41 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                
+                .delete {
+                    position: absolute;
+                    color: rgb(56, 56, 56);
+                    cursor: pointer;
+                    font-size: .4rem;
+                    right: 2.5rem;
+                    padding: .15rem .25rem;
+                    border: 1px solid rgb(56, 56, 56);
+                    font-weight: bold;
+                    border-radius: 50%;
+                    transition: .3s;
+                    transform: translateY(1px);
+                    &:hover {
+                        background-color: rgb(184, 50, 50);
+                        border: none;
+                        color: white;
+                    };
+                };       
                 h4 {
-                    font-size: .6rem;
+                    font-size: .5rem;
                     margin: 0;
+                    margin-bottom: 3px;
                     display: inline-block;
-                    padding-bottom: .2rem
+                    cursor: pointer;
+                    padding-left: .5rem;
                 };
+                .main_title {
+                    padding: .15rem 2rem;
+                    };
                 p  {
                     margin: 0;
-                    width: 1.75rem;
-                    padding-right: .5rem;
-                    padding-left: 1rem;
+                    width: 1.5rem;
+                    padding-left: .7rem;
                     display: inline-block;
+                    font-size: .5rem;
                     text-align: left;
                 };
                 a {

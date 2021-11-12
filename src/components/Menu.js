@@ -13,11 +13,22 @@ function Menu({counter, handleClick, handleChange, handleMetrum, metrumProp, war
     const linkStyle = {color:'black', textDecoration: 'none'};
 
     let location = useLocation();
+
     useEffect(() => {
         if (location.pathname === '/') {
             setMetrum(false);
             setSongs(false);
             setMetronome(true)
+        };
+        if (location.pathname === '/metrum') {
+            setMetrum(true);
+            setSongs(false);
+            setMetronome(false)
+        };
+        if (location.pathname === '/songs') {
+            setMetrum(false);
+            setSongs(true);
+            setMetronome(false)
         };
     }, [location.pathname]);
 
