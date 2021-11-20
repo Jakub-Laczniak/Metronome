@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import SingleSong from './SingleSong'
-import data from '../songs.json';
 import firebase from '../utils/firebase';
 
 function Songs() {
